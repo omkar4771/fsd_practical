@@ -1,0 +1,14 @@
+{
+  "name": "slip-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "omkar daswadkar",
+  "license": "ISC",
+  "dependencies": {
+    "reverse-string": "^0.0.6"
+  }
+}
