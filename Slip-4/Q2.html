@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="myCtrl">
+    <h1>User Details Form</h1>
+    <form name="userForm" novalidate>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" ng-model="user.name" ng-pattern="/^[a-zA-Z ]*$/" required>
+        <span ng-show="userForm.name.$error.pattern">Name should contain only characters</span><br><br>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" ng-model="user.mobile" ng-pattern="/^\d{10}$/" required>
+        <span ng-show="userForm.mobile.$error.pattern">Mobile number should contain only 10 digits</span><br><br>
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" name="pincode" ng-model="user.pincode" ng-pattern="/^\d{6}$/" required>
+        <span ng-show="userForm.pincode.$error.pattern">Pincode should contain only 6 digits</span><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" ng-model="user.email" required>
+        <span ng-show="userForm.email.$error.email">Invalid email address</span><br><br>
+
+        <button type="submit" ng-disabled="userForm.$invalid" ng-click="submitForm()">Submit</button>
+    </form>
+</body>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.submitForm = function() {
+        // Form submission logic goes here
+        console.log($scope.user);
+        alert('Form submitted successfully!');
+    };
+});
+
+        </script>
+</html>
