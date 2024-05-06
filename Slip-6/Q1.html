@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="clickApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS ng-click Directive</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="ClickController">
+    <button ng-click="showAlert()">Click me</button>
+</div>
+
+<script>
+    var app = angular.module('clickApp', []);
+
+    app.controller('ClickController', function($scope) {
+        $scope.showAlert = function() {
+            alert('Button clicked!');
+        };
+    });
+</script>
+
+</body>
+</html>
