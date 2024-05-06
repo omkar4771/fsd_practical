@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Employee Registration</h2>
+<form id="registrationForm" onsubmit="return validateForm()">
+    <label for="dob">Date of Birth:</label><br>
+    <input type="date" id="dob" name="dob" required><br>
+    <span id="dobError" class="error"></span><br>
+
+    <label for="joiningDate">Joining Date:</label><br>
+    <input type="date" id="joiningDate" name="joiningDate" required><br>
+    <span id="joiningDateError" class="error"></span><br>
+
+    <label for="salary">Salary:</label><br>
+    <input type="number" id="salary" name="salary" required><br>
+    <span id="salaryError" class="error"></span><br>
+
+    <input type="submit" value="Register">
+</form>
+
+<script>
+    function validateForm() {
+        const dob = document.getElementById("dob").value;
+        const joiningDate = document.getElementById("joiningDate").value;
+        const salary = document.getElementById("salary").value;
+
+        const dobDate = new Date(dob);
+        const joiningDateDate = new Date(joiningDate);
+        const currentYear = new Date().getFullYear();
+
+        let isValid = true;
+
+        // Validate Date of Birth
+        if (dobDate > new Date()) {
+            document.getElementById("dobError").innerHTML = "Date of Birth cannot be in the future";
+            isValid = false;
+        } else {
+            document.getElementById("dobError").innerHTML = "";
+        }
+
+        // Validate Joining Date
+        if (joiningDateDate > new Date()) {
+            document.getElementById("joiningDateError").innerHTML = "Joining Date cannot be in the future";
+            isValid = false;
+        } else if (joiningDateDate.getFullYear() < currentYear - 5) { // Assuming employee can't join before 5 years
+            document.getElementById("joiningDateError").innerHTML = "Joining Date should be within the last 5 years";
+            isValid = false;
+        } else {
+            document.getElementById("joiningDateError").innerHTML = "";
+        }
+
+        // Validate Salary
+        if (salary <= 0) {
+            document.getElementById("salaryError").innerHTML = "Salary must be greater than zero";
+            isValid = false;
+        } else {
+            document.getElementById("salaryError").innerHTML = "";
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>

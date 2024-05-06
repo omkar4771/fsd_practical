@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Employee Registration</h2>
+<form id="employeeForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <span id="nameError" class="error"></span><br>
+
+    <label for="email">Email ID:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <span id="emailError" class="error"></span><br>
+
+    <label for="mobile">Mobile Number:</label><br>
+    <input type="text" id="mobile" name="mobile" required><br>
+    <span id="mobileError" class="error"></span><br>
+
+    <label for="department">Department:</label><br>
+    <input type="text" id="department" name="department" required><br>
+    <span id="departmentError" class="error"></span><br>
+
+    <label for="joiningDate">Joining Date:</label><br>
+    <input type="date" id="joiningDate" name="joiningDate" required><br>
+    <span id="joiningDateError" class="error"></span><br>
+
+    <input type="submit" value="Register">
+</form>
+
+<script>
+    function validateForm() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const mobile = document.getElementById("mobile").value;
+        const department = document.getElementById("department").value;
+        const joiningDate = document.getElementById("joiningDate").value;
+
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        const mobileRegex = /^\d{10}$/;
+
+        let isValid = true;
+
+        if (!nameRegex.test(name)) {
+            document.getElementById("nameError").innerHTML = "Invalid name";
+            isValid = false;
+        } else {
+            document.getElementById("nameError").innerHTML = "";
+        }
+
+        if (!emailRegex.test(email)) {
+            document.getElementById("emailError").innerHTML = "Invalid email";
+            isValid = false;
+        } else {
+            document.getElementById("emailError").innerHTML = "";
+        }
+
+        if (!mobileRegex.test(mobile)) {
+            document.getElementById("mobileError").innerHTML = "Invalid mobile number";
+            isValid = false;
+        } else {
+            document.getElementById("mobileError").innerHTML = "";
+        }
+
+        if (department.trim() === "") {
+            document.getElementById("departmentError").innerHTML = "Department cannot be empty";
+            isValid = false;
+        } else {
+            document.getElementById("departmentError").innerHTML = "";
+        }
+
+        // Assume joining date should not be in the future
+        const currentDate = new Date();
+        const selectedDate = new Date(joiningDate);
+        if (selectedDate > currentDate) {
+            document.getElementById("joiningDateError").innerHTML = "Joining Date cannot be in the future";
+            isValid = false;
+        } else {
+            document.getElementById("joiningDateError").innerHTML = "";
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>

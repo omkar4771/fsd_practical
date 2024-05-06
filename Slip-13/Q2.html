@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Registration</h2>
+<form id="registrationForm" onsubmit="return validateForm()">
+    <label for="firstName">First Name:</label><br>
+    <input type="text" id="firstName" name="firstName" required><br>
+    <span id="firstNameError" class="error"></span><br>
+
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" id="lastName" name="lastName" required><br>
+    <span id="lastNameError" class="error"></span><br>
+
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age" required><br>
+    <span id="ageError" class="error"></span><br>
+
+    <input type="submit" value="Register">
+</form>
+
+<script>
+    function validateForm() {
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const age = document.getElementById("age").value;
+
+        const nameRegex = /^[A-Za-z]+$/;
+
+        let isValid = true;
+
+        if (!nameRegex.test(firstName)) {
+            document.getElementById("firstNameError").innerHTML = "Invalid first name";
+            isValid = false;
+        } else {
+            document.getElementById("firstNameError").innerHTML = "";
+        }
+
+        if (!nameRegex.test(lastName)) {
+            document.getElementById("lastNameError").innerHTML = "Invalid last name";
+            isValid = false;
+        } else {
+            document.getElementById("lastNameError").innerHTML = "";
+        }
+
+        if (age < 18 || age > 50) {
+            document.getElementById("ageError").innerHTML = "Age must be between 18 and 50";
+            isValid = false;
+        } else {
+            document.getElementById("ageError").innerHTML = "";
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>

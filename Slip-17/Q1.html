@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SyllabusApp">
+<head>
+    <meta charset="UTF-8">
+    <title>M.Sc (CS) Sem-II Syllabus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+<body>
+
+<div ng-view></div>
+
+<script>
+    var app = angular.module("SyllabusApp", ["ngRoute"]);
+
+    app.config(function($routeProvider) {
+        $routeProvider
+            .when("/", {
+                templateUrl: "home.html"
+            })
+            .when("/subject1", {
+                templateUrl: "subject1.html",
+                controller: "Subject1Controller"
+            })
+            .when("/subject2", {
+                templateUrl: "subject2.html",
+                controller: "Subject2Controller"
+            })
+            // Add more routes for other subjects as needed
+            .otherwise({
+                redirectTo: "/"
+            });
+    });
+
+    app.controller("Subject1Controller", function($scope) {
+        // Controller logic for Subject 1
+        $scope.subject = "Subject 1";
+        $scope.syllabus = "Syllabus content for Subject 1";
+    });
+
+    app.controller("Subject2Controller", function($scope) {
+        // Controller logic for Subject 2
+        $scope.subject = "Subject 2";
+        $scope.syllabus = "Syllabus content for Subject 2";
+    });
+
+    // Add more controllers for other subjects as needed
+</script>
+
+</body>
+</html>
+
+
+<!-- home.html  -->
+<!-- <h1>M.Sc (CS) Sem-II Syllabus</h1>
+<ul>
+    <li><a href="#/subject1">Subject 1</a></li>
+    <li><a href="#/subject2">Subject 2</a></li>
+    Add more links for other subjects as needed
+</ul> -->
+
+<!-- subject1.html  -->
+<!-- <h2>{{ subject }}</h2>
+<p>{{ syllabus }}</p> -->
+
+<!-- In this example:
+
+We define the main module SyllabusApp and configure routing using $routeProvider.
+We define routes for the home page (/) and each subject's syllabus content (/subject1, /subject2, etc.).
+Each route is associated with a template file (home.html, subject1.html, subject2.html, etc.).
+Controllers (Subject1Controller, Subject2Controller, etc.) are defined to handle logic and data for each route.
+You can add more subjects and their respective controllers/templates following a similar pattern. When the user navigates to a specific subject, AngularJS will load the corresponding template and controller, displaying the syllabus content for that subject. -->
+

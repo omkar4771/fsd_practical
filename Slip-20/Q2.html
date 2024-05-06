@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ValidationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Username and Password Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="ValidationController">
+    <h1>Username and Password Validation</h1>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" ng-model="username" ng-change="validateUsername()"><br>
+    <span ng-show="showUsernameMessage">{{ usernameValidationMessage }}</span><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" ng-model="password" ng-change="validatePassword()"><br>
+    <span ng-show="showPasswordMessage">{{ passwordValidationMessage }}</span><br>
+</div>
+
+<script>
+    var app = angular.module("ValidationApp", []);
+
+    app.controller("ValidationController", function($scope) {
+        $scope.username = '';
+        $scope.password = '';
+        $scope.usernameValidationMessage = '';
+        $scope.passwordValidationMessage = '';
+        $scope.showUsernameMessage = false;
+        $scope.showPasswordMessage = false;
+
+        $scope.validateUsername = function() {
+            if (!$scope.username) {
+                $scope.usernameValidationMessage = 'Enter username';
+            } else if ($scope.username.length < 3) {
+                $scope.usernameValidationMessage = 'Username is too short';
+            } else {
+                $scope.usernameValidationMessage = 'Valid username';
+            }
+
+            $scope.showUsernameMessage = true;
+        };
+
+        $scope.validatePassword = function() {
+            if (!$scope.password) {
+                $scope.passwordValidationMessage = 'Enter password';
+            } else if ($scope.password.length < 8) {
+                $scope.passwordValidationMessage = 'Password is too short';
+            } else {
+                $scope.passwordValidationMessage = 'Valid password';
+            }
+
+            $scope.showPasswordMessage = true;
+        };
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FormApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="FormController">
+    <h1>Form Validation</h1>
+    <form name="myForm" ng-submit="submitForm()" novalidate>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" ng-model="formData.name" required ng-pattern="/^[A-Za-z\s]+$/" ><br>
+        <span ng-show="myForm.name.$error.required || myForm.name.$error.pattern">Name should contain characters only</span><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="text" id="mobile" name="mobile" ng-model="formData.mobile" required ng-pattern="/^\d{10}$/" ><br>
+        <span ng-show="myForm.mobile.$error.required || myForm.mobile.$error.pattern">Mobile number should contain only 10 digits</span><br>
+
+        <label for="pincode">Pin Code:</label><br>
+        <input type="text" id="pincode" name="pincode" ng-model="formData.pincode" required ng-pattern="/^\d{6}$/" ><br>
+        <span ng-show="myForm.pincode.$error.required || myForm.pincode.$error.pattern">Pin code should contain only 6 digits</span><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" ng-model="formData.email" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" ><br>
+        <span ng-show="myForm.email.$error.required || myForm.email.$error.pattern">Invalid email address</span><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    var app = angular.module("FormApp", []);
+
+    app.controller("FormController", function($scope) {
+        $scope.formData = {};
+
+        $scope.submitForm = function() {
+            // Submit logic goes here
+            console.log("Form submitted with data:", $scope.formData);
+        };
+    });
+</script>
+
+</body>
+</html>
