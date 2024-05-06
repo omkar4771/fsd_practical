@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="StudentController">
+    <h2>Student Details</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Grade</th>
+        </tr>
+        <tr ng-repeat="student in students">
+            <td>{{ student.name }}</td>
+            <td>{{ student.rollNo }}</td>
+            <td>{{ student.grade }}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var app = angular.module('studentApp', []);
+
+    app.controller('StudentController', function($scope) {
+        // Array to store student details
+        $scope.students = [
+            { name: 'John', rollNo: '101', grade: 'A' },
+            { name: 'Alice', rollNo: '102', grade: 'B' },
+            { name: 'Bob', rollNo: '103', grade: 'A' },
+            { name: 'Carol', rollNo: '104', grade: 'B' },
+            { name: 'David', rollNo: '105', grade: 'C' },
+            { name: 'Eva', rollNo: '106', grade: 'A' },
+            { name: 'Frank', rollNo: '107', grade: 'B' },
+            { name: 'Grace', rollNo: '108', grade: 'C' },
+            { name: 'Henry', rollNo: '109', grade: 'A' },
+            { name: 'Ivy', rollNo: '110', grade: 'B' }
+        ];
+    });
+</script>
+
+</body>
+</html>
