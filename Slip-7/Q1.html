@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dateTimeApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Date and Time</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="DateTimeController">
+    <h2>Current Date and Time</h2>
+    <p>{{ currentDateTime }}</p>
+</div>
+
+<script>
+    var app = angular.module('dateTimeApp', []);
+
+    app.controller('DateTimeController', function($scope, $interval) {
+        // Update the current date and time every second
+        $interval(function() {
+            $scope.currentDateTime = new Date().toLocaleString();
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
