@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+<style>
+    form {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<form id="registrationForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" placeholder="Enter your age">
+
+    <input type="submit" value="Register">
+</form>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get values from the form
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var age = parseInt(document.getElementById("age").value);
+
+        // Regular expressions for first and last name validation
+        var nameRegex = /^[a-zA-Z]+$/;
+
+        // Validate first name
+        if (!nameRegex.test(firstName)) {
+            alert("First name should contain only alphabets.");
+            return false;
+        }
+
+        // Validate last name
+        if (!nameRegex.test(lastName)) {
+            alert("Last name should contain only alphabets.");
+            return false;
+        }
+
+        // Validate age
+        if (age < 18 || age > 50) {
+            alert("Age should be between 18 and 50.");
+            return false;
+        }
+
+        // If validation passes, you can proceed with form submission or other actions
+        // For example, you can uncomment the line below to submit the form
+        // document.getElementById("registrationForm").submit();
+
+        // For demonstration, let's just log a success message
+        console.log("Registration successful!");
+    });
+</script>
+
+</body>
+</html>
